@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Douyin Auto Responder",
+  "version": "1.0",
+  "description": "Automates responses to Douyin private messages based on keywords.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "cookies"
+  ],
+  "host_permissions": [
+    "https://www.douyin.com/*"
+  ],
+  "action": {},
+  "background": {"service_worker": "background.js"},
+  "content_scripts": [
+    {
+      "matches": ["https://www.douyin.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}

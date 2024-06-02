@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+message ExampleMessage {
+    optional uint32 field1 = 1; // cmd
+    optional uint32 field2 = 2; // sequence_id
+    optional string field3 = 3; // sdk_version
+    optional string field4 = 4; // token
+    optional uint32 field5 = 5; // refer
+    optional uint32 field6 = 6; // inbox_type
+    optional string field7 = 7; // build_number
+    
+
+    message SubMessage1 {
+        message SubMessage11 
+        {
+          string field1 = 1; // conversation_id
+          uint32 field2 = 2; // conversation_type
+          uint64 field3 = 3; // conversation_short_id
+          string field4 = 4; // content
+          message Field5SubMessage {
+            string field1 = 1; // 
+            oneof field2 {      // This field corresponds to either string or bytes field2 from SubMessage111
+              string str_value = 2;
+              bytes bytes_value = 3;
+            }
+          }
+        
+          repeated Field5SubMessage field5 = 5; // mentioned_users and time and clientmessageid (ext)
+            
+          uint32 field6 = 6; // message_type
+          string field7 = 7; // ticket
+          string field8 = 8; // client_id
+        }
+        SubMessage11 field1 = 100;
+    }
+    SubMessage1 field8 = 8; // body
+
+    string field9 = 9; // dinbox_type
+    // 10: sequence_id
+    string field10 = 11; // device_platform
+    // 11: sequence_id
+    // 12: sequence_id
+    // 13: sequence_id
+    // 14: sequence_id
+   
+  message Field15SubMessage {
+      string field1 = 1;
+      string field2 = 2;
+  }
+
+  // message Field15 {
+  //     repeated Field15SubMessage sub_message = 1;
+  // }
+  repeated Field15SubMessage field15 = 15; // headers (sharkparam)
+
+  uint32 field18 = 18; // auth_type
+  string field21 = 21; // biz
+  string field22 = 22; // access
+  string field23 = 23; // ts_sign
+  string field24 = 24; // sdk_cert
+  string field25 = 25; // reuqest_sign
+}
