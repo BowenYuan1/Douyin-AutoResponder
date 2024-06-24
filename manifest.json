@@ -6,17 +6,30 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "cookies"
+    "storage",
+    "cookies",
+    "webRequest",
+    "downloads",
+    "webRequestBlocking"
   ],
+  
   "host_permissions": [
     "https://www.douyin.com/*"
   ],
-  "action": {},
+  "action": {
+    "default_popup": "popup.html"
+  },
   "background": {"service_worker": "background.js"},
   "content_scripts": [
     {
       "matches": ["https://www.douyin.com/*"],
       "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["libs/protobuf.js", "libs/message.proto"],
+      "matches": ["<all_urls>"]
     }
   ]
 }

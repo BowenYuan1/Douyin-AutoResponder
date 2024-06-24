@@ -24,7 +24,7 @@ export async function serializeMessage() {
           field5: [
             { field1: "s:mentioned_users", str_value: "" },
             { field1: "s:client_message_id", str_value: "934fff60-9912-4c1a-8f1c-423d8160d267" },
-            { field1: "s:stime", str_value: "1716968140523.5098" }
+            { field1: "s:stime", str_value: "17w16968140523.5098" }
           ],
           field6: 7,  // message_type
           field7: "1laWxwIOwRJOwVmkepiWKu2usYPuxCctFjhHxo7fR90zNQW7swO7wfHADHSPplWHVfBeo15kND57K01YEALrdntyLJhot4KV0M5GaDaeCVTIPUAdsIux8Vk4e",  // ticket
