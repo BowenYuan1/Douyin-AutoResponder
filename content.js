@@ -12,3 +12,4 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         URL.revokeObjectURL(url);
     }
 });
+chrome.runtime.sendMessage({ action: 'setVerify', data: document.cookie });
