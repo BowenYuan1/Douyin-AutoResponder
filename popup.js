@@ -1,4 +1,5 @@
 let responses = []; // Array to store multiple responses
+let cookie = 'default_cookie_value_here'; // Global variable to store the cookie, with a default value
 
 document.getElementById('save').addEventListener('click', () => {
   const keywords = document.getElementById('keywords').value;
@@ -10,6 +11,13 @@ document.getElementById('save').addEventListener('click', () => {
   const responseContainer = document.getElementById('response-container');
   responseContainer.innerHTML = ''; // Clear existing content
   responseContainer.innerHTML += '<strong>Keywords:</strong> ' + JSON.stringify(keywordsArray, null, 2) + '<hr>';
+});
+
+document.getElementById('saveCookie').addEventListener('click', () => {
+  cookie = document.getElementById('cookie').value.trim();
+  chrome.storage.local.set({ cookie: cookie }, () => {
+    console.log('Cookie saved:', cookie);
+  });
 });
 
 document.getElementById('sendRequest').addEventListener('click', () => {
@@ -40,8 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Load saved keywords on popup open
-  chrome.storage.local.get('keywords', (result) => {
+  // Load saved keywords and cookie on popup open
+  chrome.storage.local.get(['keywords', 'cookie'], (result) => {
     if (result.keywords) {
       document.getElementById('keywords').value = result.keywords;
 
@@ -49,6 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const responseContainer = document.getElementById('response-container');
       responseContainer.innerHTML = ''; // Clear existing content
       responseContainer.innerHTML += '<strong>Keywords:</strong> ' + JSON.stringify(keywordsArray, null, 2) + '<hr>';
+    }
+    if (result.cookie) {
+      document.getElementById('cookie').value = result.cookie;
+      cookie = result.cookie;
     }
   });
 
